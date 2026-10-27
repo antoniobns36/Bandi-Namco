@@ -69,3 +69,56 @@ pub fn turn_menu(fort_available: &mut bool, bulletss: i32) -> Action {
 fn main() { 
      println!("Module compiled successfully");
 }       
+
+pub fn fort_purchases(
+    cash: &mut f64,
+    food: &mut f64,
+    bullets: &mut i32,
+    clothing: &mut f64,
+    misc: &mut f64,
+    miles: &mut f64,
+){
+   println!("ENTER WHAT YOU WISH TO SPEND ON THE FOLLOWING");
+  
+   
+   let items = ["food", "ammunition", "clothing", "misc. supplies"];
+
+   for item_name in items {
+       print!("{} ", item_name);
+       let amount = io::ask_number() as f64;
+
+    
+       if amount < 0.0 {
+          continue;
+       }
+
+       if *cash - amount < 0.0 {
+          println!("YOU DON'T HAVE THAT MUCH--KEEP YOUOR SPENDING DOWN");
+          println!("YOU MISS YOUR CHANCE TO SPEND ON THAT ITEM");
+          continue;
+       }
+
+  
+       *cash -= amount;
+  
+
+       match item_name {
+           "food" => {
+               *food += amount * (2.0 / 3.0);
+           }
+           "ammunition" => {
+               let gained_bullets = (amount * (50.0 * (2.0 / 3.0))) as i32;
+               *bullets += gained_bullets;
+           }
+           "clothing" => {
+               *clothing += amount * (2.0 / 3.0);
+           }
+           "misc. supplies" => {
+               *misc += amount * (2.0 / 3.0);
+           }
+           _ => {}
+        }
+    }
+   
+    *miles -= 45.0;
+}
