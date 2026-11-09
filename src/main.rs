@@ -228,7 +228,34 @@ pub fn turn_menu(fort_available: &mut bool, bullets: i32) -> Action {
         }
     }
 }
+// ==========================================
+// 9. GET SHOOTIN SKILL LEVEL
+// ==========================================
+	fn get_shooting_skill_level() -> i32 {
+		println!();
+		println!("HOW GOOD A SHOT ARE YOU WITH YOUR RIFLE?");
+		println!("(1) ACE MARKSMAN, (2) GOOD SHOT, (3) fAIR TO MIDDLIN'");
+		println!("(4) NEED MORE PRACTICE, (5) SHAKY KNEES");
+		println!("ENTER ONE OF THE ABOVE -- THE BETTER YOU CLAIM YOU ARE, THE");
+		println!("FASTER YOU'LL HAVE TO BE WITH YOUR GUN TO BE SUCCESSFUL.");
+		println!("");
+		            
+		let mut input = String::new();
+		io::stdin()
+			.read_line(&mut input)
+			.expect("Failed to read line");
+                
+		match input.trim().parse::<i32>() {
+		  Ok(num) => return num,
+		  Err(_) => {
+			println!("REDO FROM START");
+		  }
+		}
+	}
 
+// ==========================================
+// 10. PURCHASE SUPPLIES
+// ==========================================
 fn main() {
     println!("All game systems compiled successfully!");
 }
