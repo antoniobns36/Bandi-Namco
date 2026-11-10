@@ -3,7 +3,7 @@ use std::time::Instant;
 // ==========================================
 // 1. IO MODULE
 // ==========================================
-pub mod io {
+pub mod io {.
     use std::io::{self, Write};
 
     pub fn ask_number() -> i32 {
@@ -231,31 +231,124 @@ pub fn turn_menu(fort_available: &mut bool, bullets: i32) -> Action {
 // ==========================================
 // 9. GET SHOOTIN SKILL LEVEL
 // ==========================================
-	fn get_shooting_skill_level() -> i32 {
-		println!();
-		println!("HOW GOOD A SHOT ARE YOU WITH YOUR RIFLE?");
-		println!("(1) ACE MARKSMAN, (2) GOOD SHOT, (3) fAIR TO MIDDLIN'");
-		println!("(4) NEED MORE PRACTICE, (5) SHAKY KNEES");
-		println!("ENTER ONE OF THE ABOVE -- THE BETTER YOU CLAIM YOU ARE, THE");
-		println!("FASTER YOU'LL HAVE TO BE WITH YOUR GUN TO BE SUCCESSFUL.");
-		println!("");
-		            
-		let mut input = String::new();
-		io::stdin()
-			.read_line(&mut input)
-			.expect("Failed to read line");
-                
-		match input.trim().parse::<i32>() {
-		  Ok(num) => return num,
-		  Err(_) => {
-			println!("REDO FROM START");
-		  }
-		}
-	}
+pub fn get_shooting_skill_level() -> i32 {
+	println!();
+	println!("HOW GOOD A SHOT ARE YOU WITH YOUR RIFLE?");
+	println!("(1) ACE MARKSMAN, (2) GOOD SHOT, (3) fAIR TO MIDDLIN'");
+	println!("(4) NEED MORE PRACTICE, (5) SHAKY KNEES");
+	println!("ENTER ONE OF THE ABOVE -- THE BETTER YOU CLAIM YOU ARE, THE");
+	println!("FASTER YOU'LL HAVE TO BE WITH YOUR GUN TO BE SUCCESSFUL.");
+	let skill_level = io::ask_number():
+	print!(skill_level):
+	println!("");
+	return skill_level
+	
+}
 
 // ==========================================
 // 10. PURCHASE SUPPLIES
 // ==========================================
+struct Supplies {
+	oxen: i32,
+	food: i32,
+	bullets: i32,
+	clothing: i32,
+	misc: i32,
+	cash: i32 
+}
+	
+pub fn purchase_supplies() -> Supplies {
+	let budget = 700
+	loop {
+		loop {
+			let oxen = io::ask_number("HOW MUCH DO YOU WANT TO SEPND ON YOUR OXEN TEAM?");
+			if oxen < 200 {
+				println!("NOT ENOUGH")
+			} else if oxen > 300 {
+				prinln!("TOO MUCH")
+			} else {
+				print!(" {}", oxen);
+				break
+			}
+		};
+		
+		loop {
+			println!("HOW MUCH DO YOU WANT TO SPEND ON FOOD");
+			let food = io::ask_number();
+			print!(food);
+			if food < 0 {
+				println!("REDO FROM START")
+			} else {
+				break
+			}
+		};
+			
+		loop {
+			println!("HOW MUCH DO YOU WANT TO SPEND ON AMMUNITION");
+			let ammunition = io::ask_number();
+			print!(ammunition);
+			if ammunition < 0 {
+				println!("REDO FROM START")
+			} else {
+				break
+			}
+		};
+		
+		loop {
+			println!("HOW MUCH DO YOU WANT TO SPEND ON CLOTHING");
+			let clothing = io::ask_number();
+			print!(clothing);
+			if clothing < 0 {
+				println!("REDO FROM START")
+			} else {
+				break
+			}
+		};
+
+		loop {			
+			println!("HOW MUCH DO YOU WANT TO SPEND ON MISCELLANEOUS SUPPLIES");
+			let misc = io::ask_number();
+			print!(misc);
+			if misc < 0 {
+				println!("REDO FROM START")
+			} else {
+				break
+			}
+		};
+
+		let bullets = ammunition * 50;
+		let total = oxen + food + ammunition + clothing + misc;
+
+		if total > budget {
+			println!("YOU OVERSPENT--YOU ONLY HAD $700 TO SPEND. BUY AGAIN")
+		} else {
+			let cash = budget - total
+			println!("AFTER ALL YOUR PURCHASES , YOU NOW HAVE {} DOLLARS LEFT", cash);
+			break			
+		}
+	};
+
+	println!();
+
+	println!("MONDAY MARCH 29 1847");
+
+	println!();
+
+	println!("TOTAL MILEAGE IS 0");
+	println!("FOOD     BULLETS     CLOTHING     MISC. SUPP.     CASH");
+	println!("{}      {}         {}         {}               {}", food, bullets, clothing, misc, cash)
+
+	return Supplies {
+		oxen,
+		food,
+		bullets,
+		clothing,
+		misc,
+		cash
+		}
+}
+
+
 fn main() {
     println!("All game systems compiled successfully!");
 }
