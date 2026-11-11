@@ -599,6 +599,37 @@ pub fn arrive_at_oregon_city(ctx: &mut GameContext) {
     println!();
     println!("PRESIDENT JAMES K. POLK SENDS YOU HIS HEARTIEST CONGRATULATIONS AND WISHES YOU A PROSPEROUS LIFE AHEAD AT YOUR NEW HOME");
     }
+
+pub fn consume_food(food: &mut f64, level: i32) -> bool {
+    let cost = 8.0 + (5.0 * level as f64);
+
+    if *food - cost < 0.0 {
+        return false;
+    }
+
+    *food -= cost;
+    true
+}
+
+pub fn choose_eating_level(food: &mut f64) -> i32 {
+    loop {
+        println!("DO YOU WANT TO EAT (1) POORLY (2) MODERATELY");
+        println!("OR (3) WELL");
+
+        let level = io::ask_number();
+
+        if level < 1 || level > 3 {
+            continue;
+        }
+
+        if consume_food(food, level) {
+            return level;
+        }
+
+        println!("YOU CAN'T EAT THAT WELL");
+    }
+}
+
 pub fn calculate_daily_mileage(
     total_mileage: &mut f64,
     oxen_spent: f64,
