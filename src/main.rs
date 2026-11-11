@@ -598,7 +598,21 @@ pub fn arrive_at_oregon_city(ctx: &mut GameContext) {
     println!("{:<10} {:<10} {:<10} {:<12} ${:<10}", disp_food, disp_bullets, disp_clothing, disp_misc, disp_cash);
     println!();
     println!("PRESIDENT JAMES K. POLK SENDS YOU HIS HEARTIEST CONGRATULATIONS AND WISHES YOU A PROSPEROUS LIFE AHEAD AT YOUR NEW HOME");
-    } 
+    }
+pub fn calculate_daily_mileage(
+    total_mileage: &mut f64,
+    oxen_spent: f64,
+) {
+    let random_bonus = (rng::rnd() % 11) as f64;
+
+    let daily_miles =
+        200.0 +
+        ((oxen_spent - 220.0) / 3.0) +
+        random_bonus;
+
+    *total_mileage += daily_miles;
+}
+
 fn main() {
     println!("All game systems compiled successfully!");
 }
