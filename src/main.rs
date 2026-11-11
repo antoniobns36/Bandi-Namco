@@ -51,7 +51,7 @@ pub mod rng {
     }
     pub fn rnd() -> i32 {
         SEED.with(|seed| {
-            let mut val = seed.get();
+;            let mut val = seed.get();
             val = val.wrapping_mul(1103515245).wrapping_add(12345);
             seed.set(val);
             (val % 1000) as i32
@@ -391,14 +391,23 @@ pub fn print_status_table(supplies: &mut Supplies, miles: &mut mileage) ->  {
 	println!("{}      {}         {}         {}               {}", food, bullets, clothing, misc, cash)
 }
 
-pub fn apply_doctor_bill() -> {
-	if *flag && cash >= 20 {
+pub fn apply_doctor_bill(cash: &mut cash, ill: &mut illness, injured: &mut injury) -> bool {
+	if !*ill | !*injured {
+		return true
+	}; 
+	
+	if cash >= 20 {
+		ill = false;
+		injured = false;
 		print!("DOCTOR'S BILL IS $20");
 		cash -= 20;
-		flag = false
-	} else {
+		return true	 
+	};
+	else {
 		println!("YOU CAN'T AFFORD A DOCTOR");
-		end game 		 
+		return false
+	}
+}
 
 fn main() {
     println!("All game systems compiled successfully!");
