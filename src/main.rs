@@ -348,6 +348,26 @@ pub fn purchase_supplies() -> Supplies {
 		}
 }
 
+const DATES: [&str, 19] = [
+	"APRIL 12", "APRIL 26", "MAY 10", "MAY 24", "JUNE 7", "JUNE 21", "JULY 5", "JULY 19", "AUGUST 2", 
+	"AUGUST 16", "AUGUST 30", "SEPTEMBER 13", "SEPTEMBER 27", "OCTOBER 11", "OCTOBER 25", "NOVEMBER 8", "NOVEMBER 22", "DECEMBER 6", "DECEMBER 20"
+	];
+ 
+pub fn advance_turn_date() -> String {
+	let date = 0;
+	if date > DATES.len() {
+		println!();
+		println!("YOU HAVE BEEN ON THE TRAIL TOO LONG");
+		println!("YOUR FAMILY DIES IN THE FIRST BLIZZARD OF WINTER");	
+		println!()
+	
+	} else {
+		println!();
+		format!("MONDAY {} 1847", DATES[date]);
+		println!();
+		date += 1
+	}
+}
 
 fn main() {
     println!("All game systems compiled successfully!");
