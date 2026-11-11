@@ -386,9 +386,19 @@ pub fn print_status_table(supplies: &mut Supplies, miles: &mut mileage) ->  {
 		supplies.misc = 0
 		};
 	println!("TOTAL MILEAGE IS {}", miles);
-
+	println!()
 	println!("FOOD     BULLETS     CLOTHING     MISC. SUPP.     CASH");
 	println!("{}      {}         {}         {}               {}", food, bullets, clothing, misc, cash)
+}
+
+pub fn apply_doctor_bill() -> {
+	if *flag && cash >= 20 {
+		print!("DOCTOR'S BILL IS $20");
+		cash -= 20;
+		flag = false
+	} else {
+		println!("YOU CAN'T AFFORD A DOCTOR");
+		end game 		 
 
 fn main() {
     println!("All game systems compiled successfully!");
