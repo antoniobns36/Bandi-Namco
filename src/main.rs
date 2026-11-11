@@ -369,6 +369,27 @@ pub fn advance_turn_date() -> String {
 	}
 }
 
+pub fn print_status_table(supplies: &mut Supplies, miles: &mut mileage) ->  {
+	if supplies.food < 13 {
+		println!("YOU'D BEETER DO SOME HUNTING OR BUY FOOD SOON!!!!");
+		}
+	if supplies.food < 0 {
+		supplies.food = 0
+		};
+	if supplies.bullets < 0 {
+		supplies.bullets = 0
+		};
+	if supplies.clothing < 0 {
+		supplies.clothing = 0
+		};
+	if supplies.misc < 0 {
+		supplies.misc = 0
+		};
+	println!("TOTAL MILEAGE IS {}", miles);
+
+	println!("FOOD     BULLETS     CLOTHING     MISC. SUPP.     CASH");
+	println!("{}      {}         {}         {}               {}", food, bullets, clothing, misc, cash)
+
 fn main() {
     println!("All game systems compiled successfully!");
 }
